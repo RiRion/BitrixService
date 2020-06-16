@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using BitrixService.Models;
 using BitrixService.Services.Interfaces;
@@ -11,29 +12,32 @@ namespace BitrixService.Services
 {
     public class ApiService : IApiService, IDisposable
     {
-        private CookieContainer cookieContainer;
-        private HttpClientHandler clientHandler;
+        private readonly CookieContainer cookieContainer;
+        private readonly HttpClientHandler clientHandler;
         private readonly ApiConfig _config;
-        private HttpClient client;
-        private readonly Uri authUri;
-        private readonly Uri apiUri;
+        private readonly HttpClient client;
+        private readonly Uri _baseUri;
+        private readonly Uri _authUri;
+        private readonly Uri _apiUri;
 
 
         public ApiService(ApiConfig config)
         {
+            cookieContainer = new CookieContainer();
             clientHandler = new HttpClientHandler {CookieContainer = cookieContainer};
+            clientHandler.CookieContainer = cookieContainer;
             client = new HttpClient(clientHandler);
             _config = config;
-            apiUri = new Uri(_config.BaseUri + _config.PrefixApi);
-            authUri = new Uri(_config.BaseUri + _config.PrefixAuth);
+            _baseUri = new Uri(_config.BaseUri);
+            _apiUri = new Uri(_config.BaseUri + _config.PrefixApi);
+            _authUri = new Uri(_config.BaseUri + _config.PrefixAuth);
         }
 
         public async Task<bool> Auth()
         {
-            cookieContainer = new CookieContainer();
             var formData = new FormUrlEncodedContent(_config.FormData);
-            var response = await client.PostAsync(authUri, formData);
-            var cookies = cookieContainer.GetCookies(new Uri(_config.BaseUri))
+            var response = await client.PostAsync(_baseUri, formData);
+            var cookies = cookieContainer.GetCookies(_baseUri)
                 .Select(c=>c.ToString()).ToList();
             return cookies.Contains($"BITRIX_SM_LOGIN={_config.Login}");
         }
@@ -41,14 +45,14 @@ namespace BitrixService.Services
         public async Task<string> GetAsync()
         {
             await CheckAuth();
-            var response = client.GetAsync(apiUri);
+            var response = client.GetAsync(_apiUri);
             return await response.Result.Content.ReadAsStringAsync();
         }
 
         public async Task PostAsync(StringContent content)
         {
             await CheckAuth();
-            await client.PostAsync(apiUri, content);
+            await client.PostAsync(_apiUri, content);
         }
 
         public async Task DeleteAsync(int[] id)
@@ -57,7 +61,7 @@ namespace BitrixService.Services
             var request = new HttpRequestMessage();
             request.Method = HttpMethod.Delete;
             request.Content = new StringContent(JsonConvert.SerializeObject(id));
-            request.RequestUri = apiUri;
+            request.RequestUri = _apiUri;
             await client.SendAsync(request);
         }
 
@@ -67,16 +71,17 @@ namespace BitrixService.Services
             var request = new HttpRequestMessage();
             request.Method = HttpMethod.Put;
             request.Content = updateContent;
-            request.RequestUri = apiUri;
+            request.RequestUri = _apiUri;
             await client.SendAsync(request);
         }
 
         public async Task CheckAuth()
         {
-            var response = client.GetAsync(authUri);
+            var response = client.GetAsync(_authUri);
             var body = await response.Result.Content.ReadAsStringAsync();
             if (!body.Contains(_config.Login))
             {
+                cookieContainer.GetCookies(_baseUri).ToList().ForEach(c => c.Expired = true);
                 await Auth();
             }
         }

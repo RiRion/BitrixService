@@ -20,6 +20,7 @@ namespace BitrixService.Models
         {
             BaseUri = baseUri;
             PrefixAuth = prefixAuth;
+            PrefixApi = prefixApi;
             Login = login;
             Password = password;
             FormData = new Dictionary<string, string>()
