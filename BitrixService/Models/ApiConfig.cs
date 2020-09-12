@@ -5,22 +5,19 @@ namespace BitrixService.Models
     public class ApiConfig
     {
         public string BaseUri { get; }
-        public string PrefixAuth { get; }
-        public string PrefixApi { get; }
+        public string BasePath { get; }
         public string Login { get; }
         public string Password { get; }
         public Dictionary<string, string> FormData { get; }
 
         public ApiConfig(
             string baseUri,
-            string prefixAuth,
-            string prefixApi,
+            string basePath,
             string login,
             string password)
         {
             BaseUri = baseUri;
-            PrefixAuth = prefixAuth;
-            PrefixApi = prefixApi;
+            BasePath = basePath;
             Login = login;
             Password = password;
             FormData = new Dictionary<string, string>()
