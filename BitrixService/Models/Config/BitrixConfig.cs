@@ -1,16 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace BitrixService.Models
+﻿namespace BitrixService.Models.Config
 {
-    public class ApiConfig
+    public class BitrixConfig
     {
         public string BaseUri { get; }
         public string BasePath { get; }
         public string Login { get; }
         public string Password { get; }
-        public Dictionary<string, string> FormData { get; }
 
-        public ApiConfig(
+        public BitrixConfig(
             string baseUri,
             string basePath,
             string login,
@@ -20,13 +17,6 @@ namespace BitrixService.Models
             BasePath = basePath;
             Login = login;
             Password = password;
-            FormData = new Dictionary<string, string>()
-            {
-                {"USER_LOGIN", Login},
-                {"USER_PASSWORD", Password},
-                {"AUTH_FORM", "Y"},
-                {"TYPE", "AUTH"}
-            };
         }
     }
 }
