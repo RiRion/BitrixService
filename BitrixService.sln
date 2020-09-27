@@ -1,7 +1,11 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitrixService", "BitrixService\BitrixService.csproj", "{94349732-19A0-4EC4-99F8-4CEDF39A845D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitrixService.ApiClients", "BitrixService.ApiClients\BitrixService.ApiClients.csproj", "{94349732-19A0-4EC4-99F8-4CEDF39A845D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitrixService.Common", "BitrixService.Common\BitrixService.Common.csproj", "{E7A96544-577B-4EB2-B782-ADC70AE31AEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitrixService.Contracts", "BitrixService.Contracts\BitrixService.Contracts.csproj", "{D16F88C4-4902-4936-913D-DF67A0B16F21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +17,13 @@ Global
 		{94349732-19A0-4EC4-99F8-4CEDF39A845D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94349732-19A0-4EC4-99F8-4CEDF39A845D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94349732-19A0-4EC4-99F8-4CEDF39A845D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A96544-577B-4EB2-B782-ADC70AE31AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A96544-577B-4EB2-B782-ADC70AE31AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A96544-577B-4EB2-B782-ADC70AE31AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A96544-577B-4EB2-B782-ADC70AE31AEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D16F88C4-4902-4936-913D-DF67A0B16F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D16F88C4-4902-4936-913D-DF67A0B16F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D16F88C4-4902-4936-913D-DF67A0B16F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D16F88C4-4902-4936-913D-DF67A0B16F21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
