@@ -1,4 +1,4 @@
-using BitrixService.Contracts.Models;
+using BitrixService.Contracts.ApiModels;
 using CsvHelper.Configuration;
 
 namespace BitrixService.ApiClients.Stripmag.Mappings

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using BitrixService.ApiClients.Loveberi.Exceptions;
 using BitrixService.ApiClients.Loveberi.Interfaces;
 using BitrixService.ApiClients.Models.Config;
-using BitrixService.Contracts.Models;
+using BitrixService.Contracts.ApiModels;
 using TypedHttpClient = BitrixService.Common.Http.TypedHttpClient;
 
 namespace BitrixService.ApiClients.Loveberi
@@ -14,6 +14,9 @@ namespace BitrixService.ApiClients.Loveberi
     {
         // BitrixClient FIELDS /////////////////////////////////////////////////////////////////////////////////////////
         private readonly LoveberiClientConfig _clientConfig;
+        
+        // VENDOR Paths ////////////////////////////////////////////////////////////////////////////////////////////////
+        private const string GetVendorsPath = "/GetVendors";
 
         // PRODUCTS Paths //////////////////////////////////////////////////////////////////////////////////////////////
         private const string GetAllProductsPath = "/GetAllProducts";
@@ -50,6 +53,13 @@ namespace BitrixService.ApiClients.Loveberi
                     if (!response.IsSuccessStatusCode) throw new AuthentificationFailException();
                 }
         
+        // VENDOR //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public async Task<VendorIdAto[]> GetVendorsAsync()
+        {
+            return await GetObjectAsync<VendorIdAto[]>(BaseAddress + GetVendorsPath);
+        }
+        
         // PRODUCT /////////////////////////////////////////////////////////////////////////////////////////////////////
         
         public async Task<ProductAto[]> GetAllProductsAsync()
@@ -69,23 +79,35 @@ namespace BitrixService.ApiClients.Loveberi
 
         public async Task AddProductsRangeAsync(ProductAto[] products)
         {
-            var response = await PostObjectAsync(BaseAddress + AddProductsRangePath, products);
-            if (!response.IsSuccessStatusCode)
+            using (var response = await PostObjectAsync(BaseAddress + AddProductsRangePath, products))
             {
-                throw new ApplicationException($"Status code {response.StatusCode}, message: {response.Content.ReadAsStringAsync()}.");
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new ApplicationException($"Status code {response.StatusCode}, message: {response.Content.ReadAsStringAsync()}.");
+                }
+                await response.Content.ReadAsStringAsync();
             }
-            await response.Content.ReadAsStringAsync();
         }
 
-        public async Task UpdateAsync(string content) // TODO: Api doesn't supported. 
-        { 
-            throw new NotImplementedException(); 
+        public async Task UpdateProductsAsync(ProductAto[] products)
+        {
+            using (var response = await PostObjectAsync(BaseAddress + UpdateProductsRangePath, products))
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new ApplicationException($"Status code {response.StatusCode}, message: {response.Content.ReadAsStringAsync()}.");
+                }
+
+                await response.Content.ReadAsStringAsync();   
+            }
         }
         
-        public async Task DeleteAsync(int[] ids)
+        public async Task DeleteProductsAsync(int[] ids)
         {
-            var response = PostObjectAsync(BaseAddress + DeleteProductsRangePath, ids);
-            await response.Result.Content.ReadAsStringAsync();
+            using (var response = PostObjectAsync(BaseAddress + DeleteProductsRangePath, ids))
+            {
+                await response.Result.Content.ReadAsStringAsync();
+            }
         }
         
         // OFFERS //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,19 +119,31 @@ namespace BitrixService.ApiClients.Loveberi
 
         public async Task AddOffersRangeAsync(OfferAto[] offers)
         {
-            var response = PostObjectAsync(BaseAddress + AddOffersRangPath, offers);
-            await response.Result.Content.ReadAsStringAsync();
+            using (var response = PostObjectAsync(BaseAddress + AddOffersRangPath, offers))
+            {
+                await response.Result.Content.ReadAsStringAsync();
+            }
         }
 
-        public async Task UpdateOffersAsync() // TODO: Api doesn't supported.
+        public async Task UpdateOffersAsync(OfferAto[] offers)
         {
-            throw new NotImplementedException();
+            using (var response = await PostObjectAsync(BaseAddress + UpdateOffersPath, offers))
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new ApplicationException($"Status code {response.StatusCode}, message: {response.Content.ReadAsStringAsync()}.");
+                }
+
+                await response.Content.ReadAsStringAsync();
+            }
         }
 
         public async Task DeleteOffersAsync(int[] ids)
         {
-            var response = PostObjectAsync(BaseAddress + DeleteOffersPath, ids);
-            await response.Result.Content.ReadAsStringAsync();
+            using (var response = PostObjectAsync(BaseAddress + DeleteOffersPath, ids))
+            {
+                await response.Result.Content.ReadAsStringAsync();
+            }
         }
     }
-}
+} 

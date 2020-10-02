@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using BitrixService.Contracts.ApiModels;
-using BitrixService.Contracts.Models;
 
 namespace BitrixService.ApiClients.Stripmag.Interfaces
 {

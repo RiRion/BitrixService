@@ -22,7 +22,7 @@ namespace BitrixService.ApiClients.DependencyInjection
                 .Where(t => t.Name.EndsWith("Client"))
                 .AsSelf()
                 .AsImplementedInterfaces();
-            builder.RegisterInstance(GetCsvConfiguration()).AsSelf();
+            builder.RegisterInstance(GetCsvConfiguration()).AsSelf(); // TODO: This configuration must be registered with the main application.
         }
 
         private CsvConfiguration GetCsvConfiguration()

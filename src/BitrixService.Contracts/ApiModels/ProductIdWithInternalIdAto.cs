@@ -1,4 +1,4 @@
-namespace BitrixService.Contracts.Models
+namespace BitrixService.Contracts.ApiModels
 {
     public class ProductIdWithInternalIdAto
     {

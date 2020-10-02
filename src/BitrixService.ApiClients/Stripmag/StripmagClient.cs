@@ -4,7 +4,6 @@ using BitrixService.ApiClients.Stripmag.Interfaces;
 using BitrixService.ApiClients.Stripmag.Models.Config;
 using BitrixService.Common.Http;
 using BitrixService.Contracts.ApiModels;
-using BitrixService.Contracts.Models;
 using CsvHelper.Configuration;
 
 namespace BitrixService.ApiClients.Stripmag
