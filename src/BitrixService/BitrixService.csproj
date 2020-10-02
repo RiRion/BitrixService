@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageVersion>1.0.2</PackageVersion>
+    <Authors>Rione</Authors>
+    <Company>AllDirect</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="CsvHelper" Version="15.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Clients" />
+    <Folder Include="Models" />
+  </ItemGroup>
+
+</Project>

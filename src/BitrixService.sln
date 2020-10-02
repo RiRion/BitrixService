@@ -1,16 +1,14 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitrixService.ApiClients", "BitrixService.ApiClients\BitrixService.ApiClients.csproj", "{94349732-19A0-4EC4-99F8-4CEDF39A845D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitrixService.Common", "BitrixService.Common\BitrixService.Common.csproj", "{E7A96544-577B-4EB2-B782-ADC70AE31AEC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitrixService.Contracts", "BitrixService.Contracts\BitrixService.Contracts.csproj", "{D16F88C4-4902-4936-913D-DF67A0B16F21}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{09DB3813-DB37-4C8E-9369-57E59C7D8D95}"
-ProjectSection(SolutionItems) = preProject
-	..\README.md = ..\README.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitrixService", "BitrixService\BitrixService.csproj", "{73B98FB4-310F-4444-B229-508E413FC19D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4E16D408-F690-4893-A8EC-8E347ECF68CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,17 +16,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{94349732-19A0-4EC4-99F8-4CEDF39A845D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94349732-19A0-4EC4-99F8-4CEDF39A845D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94349732-19A0-4EC4-99F8-4CEDF39A845D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94349732-19A0-4EC4-99F8-4CEDF39A845D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7A96544-577B-4EB2-B782-ADC70AE31AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7A96544-577B-4EB2-B782-ADC70AE31AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7A96544-577B-4EB2-B782-ADC70AE31AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7A96544-577B-4EB2-B782-ADC70AE31AEC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D16F88C4-4902-4936-913D-DF67A0B16F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D16F88C4-4902-4936-913D-DF67A0B16F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D16F88C4-4902-4936-913D-DF67A0B16F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D16F88C4-4902-4936-913D-DF67A0B16F21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B98FB4-310F-4444-B229-508E413FC19D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B98FB4-310F-4444-B229-508E413FC19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B98FB4-310F-4444-B229-508E413FC19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B98FB4-310F-4444-B229-508E413FC19D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{73B98FB4-310F-4444-B229-508E413FC19D} = {4E16D408-F690-4893-A8EC-8E347ECF68CF}
 	EndGlobalSection
 EndGlobal
