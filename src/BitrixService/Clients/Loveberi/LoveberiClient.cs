@@ -43,15 +43,17 @@ namespace BitrixService.Clients.Loveberi
         // FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////////////////
         
         public void Login()
-                {
-                    var authData = Encoding.ASCII.GetBytes($"{_clientConfig.Login}:{_clientConfig.Password}");
-                    DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-                        "Basic",
-                        Convert.ToBase64String(authData)
-                    );
-                    var response = GetAsync(BaseAddress + "/Login").GetAwaiter().GetResult();
-                    if (!response.IsSuccessStatusCode) throw new AuthentificationFailException();
-                }
+        { 
+            var authData = Encoding.ASCII.GetBytes($"{_clientConfig.Login}:{_clientConfig.Password}"); 
+            DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+                "Basic",
+                Convert.ToBase64String(authData)
+                );
+            using (var response = GetAsync(BaseAddress + "/Login").GetAwaiter().GetResult())
+            {
+                if (!response.IsSuccessStatusCode) throw new AuthentificationFailException();
+            }
+        }
         
         // VENDOR //////////////////////////////////////////////////////////////////////////////////////////////////////
 
