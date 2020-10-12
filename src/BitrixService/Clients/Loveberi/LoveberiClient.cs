@@ -37,8 +37,6 @@ namespace BitrixService.Clients.Loveberi
             _clientConfig = clientConfig;
             BaseAddress = new Uri(clientConfig.BaseUri + clientConfig.BasePath);
         }
-        public LoveberiClient(string baseUri, string basePath, string login, string password) : 
-            this(new LoveberiClientConfig(baseUri, basePath, login, password)) { }
         
         // FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////////////////
         

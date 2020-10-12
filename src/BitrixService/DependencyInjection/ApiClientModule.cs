@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Reflection;
+using System.Text;
 using Autofac;
 using BitrixService.Clients.TypedHttp;
 using BitrixService.Extensions;
@@ -33,7 +34,8 @@ namespace BitrixService.DependencyInjection
                 Delimiter = ";",
                 HasHeaderRecord = true,
                 TrimOptions = TrimOptions.Trim,
-                BadDataFound = null
+                BadDataFound = null,
+                Encoding = Encoding.UTF8
             };
             csvConfig.RegisterClassMapCollection(_currentAssembly);
             return csvConfig;

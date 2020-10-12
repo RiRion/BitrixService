@@ -2,19 +2,8 @@ namespace BitrixService.Clients.Stripmag.Models.Config
 {
     public class StripmagClientConfig
     {
-        public string BaseUri { get; }
-        public string ProductPath { get; }
-        public string OfferPath { get; }
-
-        public StripmagClientConfig(
-            string baseUri,
-            string productPath,
-            string offerPath
-            )
-        {
-            BaseUri = baseUri;
-            ProductPath = productPath;
-            OfferPath = offerPath;
-        }
+        public string BaseUri { get; set; }
+        public string ProductPath { get; set; }
+        public string OfferPath { get; set; }
     }
 }

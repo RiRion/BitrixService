@@ -2,21 +2,9 @@
 {
     public class LoveberiClientConfig
     {
-        public string BaseUri { get; }
-        public string BasePath { get; }
-        public string Login { get; }
-        public string Password { get; }
-
-        public LoveberiClientConfig(
-            string baseUri,
-            string basePath,
-            string login,
-            string password)
-        {
-            BaseUri = baseUri;
-            BasePath = basePath;
-            Login = login;
-            Password = password;
-        }
+        public string BaseUri { get; set; }
+        public string BasePath { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

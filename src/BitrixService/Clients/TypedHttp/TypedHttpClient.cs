@@ -103,7 +103,7 @@ namespace BitrixService.Clients.TypedHttp
         
         protected async Task<T[]> CsvDeserializeObject<T>(HttpResponseMessage responseMessage, CsvConfiguration csvConfiguration)
         {
-            using var stream = new StreamReader(await responseMessage.Content.ReadAsStreamAsync());
+            using (var stream = new StreamReader(await responseMessage.Content.ReadAsStreamAsync()))
             {
                 using(var reader = new CsvReader(stream, csvConfiguration))
                 {
