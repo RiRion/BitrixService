@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BitrixService.Models.ApiModels
 {
     public class ProductFromSupplierAto
@@ -14,7 +16,8 @@ namespace BitrixService.Models.ApiModels
         public string Length { get; set; }
         public string Diameter { get; set; }
         public string Collection { get; set; }
-        public CategoriesAto Categories { get; set; }
+        public int CategoryId { get; set; }
+        public IEnumerable<CategoryAto> Categories { get; set; }
         public string Bestseller { get; set; }
         public string New { get; set; }
         public string Function { get; set; }

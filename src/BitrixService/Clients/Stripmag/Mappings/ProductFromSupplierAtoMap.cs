@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BitrixService.Models.ApiModels;
 using CsvHelper.Configuration;
 
@@ -19,7 +20,14 @@ namespace BitrixService.Clients.Stripmag.Mappings
             Map(m => m.Length).Name("length");
             Map(m => m.Diameter).Name("diameter");
             Map(m => m.Collection).Name("collection");
-            References<CategoriesMap>(m => m.Categories);
+            Map(m => m.Categories).ConvertUsing(row =>
+            {
+                var categories = new List<CategoryAto>();
+                categories.Add(new CategoryAto(){Name = row.GetField("categories_1")});
+                categories.Add(new CategoryAto(){Name = row.GetField("categories_2")});
+                categories.Add(new CategoryAto(){Name = row.GetField("categories_3")});
+                return categories;
+            });
             Map(m => m.Bestseller).Name("bestseller");
             Map(m => m.New).Name("new");
             Map(m => m.Function).Name("function");
