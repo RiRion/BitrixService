@@ -14,7 +14,7 @@ namespace BitrixService.Clients.Stripmag.Mappings
             Map(m => m.Name).Name("name");
             Map(m => m.Quantity).Name("qty");
             Map(m => m.ShippingDate).Name("shippingdate");
-            Map(m=>m.Weight).Name("weight");
+            Map(m=>m.Weight).Name("weight").Default("0");
             Map(m => m.Color).Name("color");
             Map(m => m.Size).Name("size");
             Map(m => m.Currency).Name("currency");

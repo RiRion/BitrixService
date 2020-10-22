@@ -30,5 +30,10 @@ namespace BitrixService.Clients.Stripmag
         {
             return await GetCsvObjectAsync<OfferAto>(BaseAddress + _clientConfig.OfferPath, _csvConfiguration);
         }
+
+        public async Task<VendorAto[]> GetVendorsFromSupplierAsync()
+        {
+            return await GetCsvObjectAsync<VendorAto>(BaseAddress + _clientConfig.VendorPath, _csvConfiguration);
+        }
     }
 }

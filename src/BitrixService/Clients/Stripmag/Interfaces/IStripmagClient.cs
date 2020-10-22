@@ -7,5 +7,6 @@ namespace BitrixService.Clients.Stripmag.Interfaces
     {
         Task<ProductFromSupplierAto[]> GetProductsFromSupplierAsync();
         Task<OfferAto[]> GetOffersFromSupplierAsync();
+        Task<VendorAto[]> GetVendorsFromSupplierAsync();
     }
 }

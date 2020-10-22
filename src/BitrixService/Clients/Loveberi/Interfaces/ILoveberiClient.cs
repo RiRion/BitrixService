@@ -7,7 +7,13 @@ namespace BitrixService.Clients.Loveberi.Interfaces
     {
         void Login();
         
-        Task<VendorIdAto[]> GetVendorsAsync();
+        Task<VendorIdAto[]> GetVendorsInternalIdWithExternalIdAsync();
+        
+        Task<VendorAto[]> GetVendorsAsync();
+        
+        Task AddVendorsAsync(VendorAto[] vendors);
+        
+        Task DeleteVendors(int[] ids);
         
         Task<ProductAto[]> GetAllProductsAsync();
         
@@ -28,5 +34,6 @@ namespace BitrixService.Clients.Loveberi.Interfaces
         Task UpdateOffersAsync(OfferAto[] offers);
 
         Task DeleteOffersAsync(int[] ids);
+        
     }
 }

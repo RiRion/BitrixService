@@ -16,7 +16,10 @@ namespace BitrixService.Clients.Loveberi
         private readonly LoveberiClientConfig _clientConfig;
         
         // VENDOR Paths ////////////////////////////////////////////////////////////////////////////////////////////////
+        private const string GetVendorsInternalIdWithExternalIdPath = "/GetVendorsId";
         private const string GetVendorsPath = "/GetVendors";
+        private const string AddVendorsPath = "/AddVendors";
+        private const string DeleteVendorsPath = "/DeleteVendors";
 
         // PRODUCTS Paths //////////////////////////////////////////////////////////////////////////////////////////////
         private const string GetAllProductsPath = "/GetAllProducts";
@@ -55,9 +58,24 @@ namespace BitrixService.Clients.Loveberi
         
         // VENDOR //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public async Task<VendorIdAto[]> GetVendorsAsync()
+        public async Task<VendorIdAto[]> GetVendorsInternalIdWithExternalIdAsync()
         {
-            return await GetObjectAsync<VendorIdAto[]>(BaseAddress + GetVendorsPath);
+            return await GetObjectAsync<VendorIdAto[]>(BaseAddress + GetVendorsInternalIdWithExternalIdPath);
+        }
+
+        public async Task<VendorAto[]> GetVendorsAsync()
+        {
+            return await GetObjectAsync<VendorAto[]>(BaseAddress + GetVendorsPath);
+        }
+
+        public async Task AddVendorsAsync(VendorAto[] vendors)
+        {
+            await PostObjectAsync(BaseAddress + AddVendorsPath, vendors);
+        }
+
+        public async Task DeleteVendors(int[] ids)
+        {
+            await DeleteObjectAsync(BaseAddress + DeleteVendorsPath, ids);
         }
         
         // PRODUCT /////////////////////////////////////////////////////////////////////////////////////////////////////

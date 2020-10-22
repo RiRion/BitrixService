@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using Autofac;
+using Autofac.Core;
 using BitrixService.Clients.TypedHttp;
 using BitrixService.Extensions;
 using CsvHelper.Configuration;
@@ -29,7 +30,7 @@ namespace BitrixService.DependencyInjection
 
         private CsvConfiguration GetCsvConfiguration()
         {
-            var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
+            var csvConfig = new CsvConfiguration(new CultureInfo("en-US"))
             {
                 Delimiter = ";",
                 HasHeaderRecord = true,
